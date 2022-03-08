@@ -170,7 +170,7 @@ def extract_data_from_hackernews(pages=5, polite=True, crawl_range=(10, 10)):
     if polite:
         Log.write(f'polite scraping enabled. crawl delay set to {CRAWL_DELAY} seconds')
     else:
-        Log.write('[yellow]!!WARNING!! polite scraping disabled')
+        Log.write('[yellow]!!WARNING!! polite scraping is disabled')
         Log.write('[yellow]crawling too quickly will result in an IP ban')
 
     driver, wait = new_hackernews_session()
@@ -299,7 +299,7 @@ def get_articles_by_keyword(keywords: Union[str, list[str]]):
 
 
 if __name__ == '__main__':
-    extract_data_from_hackernews(5, polite=False)
+    extract_data_from_hackernews(1, polite=False)
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukranian']),
                          get_articles_by_keyword('belarus'),
@@ -308,7 +308,11 @@ if __name__ == '__main__':
                          get_articles_by_keyword('japan')]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
-    relevant_hn_posts = relevant_hn_posts.drop_duplicates()
+    relevant_hn_posts = relevant_hn_posts[['title', 'link', 'comments', 'user', 'score']]
+
+    grouping = ['title', 'link', 'comments', 'user']
+    relevant_hn_posts = relevant_hn_posts.groupby(grouping).max('score')
+    relevant_hn_posts = relevant_hn_posts.reset_index()
     relevant_hn_posts = relevant_hn_posts.sort_values(by='score', ascending=False)
 
-    Log.debug(relevant_hn_posts[['title', 'user', 'score']])
+    Log.debug(relevant_hn_posts)
