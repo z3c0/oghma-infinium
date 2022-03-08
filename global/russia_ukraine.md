@@ -18,6 +18,8 @@
 
 ## News/Propaganda/Counter-Propaganda
 
+- ["Russian Tank" Incident Debunked](https://observers.france24.com/en/europe/20220301-video-debunked-russian-tank-crush-civilian-car-kyiv)
+
 - [Pravda: Russian Troops to Move on Kyiv](https://www.pravda.com.ua/eng/news/2022/03/6/7328917/)
 
     а хіба вже багато днів вони не пробують те саме
