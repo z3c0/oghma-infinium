@@ -4,6 +4,20 @@
 
 - [Russian-Ukrainian Conflict Dossier](global/russia_ukraine.md)
 
+## HN Scraper
+
+To use `hackernews.py`, set your HN credentials as environment variables (`HN_USER` & `HN_PASSWORD`)
+
+Dependencies:
+    - pandas
+    - selenium
+    - rich
+    - pycryptodome
+    - pyarrow
+    - python-snappy
+
+## License
+
 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
   <a rel="license"
      href="http://creativecommons.org/publicdomain/zero/1.0/">
