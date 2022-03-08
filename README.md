@@ -9,12 +9,13 @@
 To use `hackernews.py`, set your HN credentials as environment variables (`HN_USER` & `HN_PASSWORD`)
 
 Dependencies:
-    - pandas
-    - selenium
-    - rich
-    - pycryptodome
-    - pyarrow
-    - python-snappy
+
+- pandas
+- selenium
+- rich
+- pycryptodome
+- pyarrow
+- python-snappy
 
 ## License
 
