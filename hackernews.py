@@ -310,7 +310,7 @@ def create_russia_ukraine_report(pages=1):
     extract_data_from_hackernews(pages)
 
     relevant_hn_posts = [get_articles_by_keyword('russia'),
-                         get_articles_by_keyword(['ukraine', 'ukranian']),
+                         get_articles_by_keyword(['ukraine', 'ukrainian']),
                          get_articles_by_keyword('belarus'),
                          get_articles_by_keyword('baltic'),
                          get_articles_by_keyword(['china', 'chinese']),
