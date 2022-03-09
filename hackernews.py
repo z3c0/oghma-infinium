@@ -299,10 +299,11 @@ def get_articles_by_keyword(keywords: Union[str, list[str]]):
 
 
 if __name__ == '__main__':
-    extract_data_from_hackernews(2, polite=False)
+    extract_data_from_hackernews(25, polite=False)
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukranian']),
                          get_articles_by_keyword('belarus'),
+                         get_articles_by_keyword('baltic'),
                          get_articles_by_keyword(['china', 'chinese']),
                          get_articles_by_keyword('taiwan'),
                          get_articles_by_keyword('japan')]
