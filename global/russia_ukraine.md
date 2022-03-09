@@ -69,3 +69,15 @@ Note: the videos here have been circulating around reddit. Reddit is a hotbed fo
 - [China sowing concern in Taiwanese nationals](https://www.axios.com/beijings-ukraine-censorship-35a02a04-91b2-4efb-8a91-a9d111a2a3a0.html#) (Conjectural)
 
 - [Japan claims Kuril Islands as sovereign](https://www.republicworld.com/world-news/rest-of-the-world-news/japan-says-kuril-islands-primordially-japanese-russias-occupation-against-intl-order-articleshow.html)
+
+    - Background: https://en.wikipedia.org/wiki/Kuril_Islands_dispute
+
+    - Source: https://www.jiji.com/sp/article?k=2022030701026&g=pol
+
+    岸田文雄首相は７日の参院予算委員会で、北方領土について「わが国の固有の領土、わが国が主権を有する領土だ」と明言した。立憲民主党の小西洋之氏への答弁。＜下へ続く＞
+
+    　安倍晋三元首相は在任時、日ロ平和条約交渉への影響を考慮し、国会答弁などで「固有の領土」との表現を避けていたが、岸田首相はロシアのウクライナ侵略を踏まえ、以前の表現に戻した。 
+
+        Prime Minister Fumio Kishida stated at the House of Councilors Budget Committee on the 7th that the Northern Territories are "a territory peculiar to Japan, a territory in which Japan has sovereignty." Answer to Mr. Hiroyuki Konishi of the Constitutional Democratic Party
+
+        Former Prime Minister Shinzo Abe avoided the expression "unique territory" in the Diet's response, considering the impact on the Japan-Russia peace treaty negotiations, but Prime Minister Kishida took into account Russia's invasion of Ukraine.
