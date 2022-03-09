@@ -2,6 +2,8 @@
 
 ## War Crimes
 
+Note: the videos here have been circulating around reddit. Reddit is a hotbed for propaganda, so take with a grain of salt.
+
 - Ukranian Father, Son, Dogs Murdered (Videos) [UNVERIFED SOURCE]
 
     - [Aftermath](ukranian-family-murdered-1-1.mp4)
@@ -12,9 +14,21 @@
 
     - [Footage](ukranian-family-murdered-2.mp4)
 
+- Ukranian market mortared [UNVERIFIED SOURCE]
+
+    - [Footage](ukrainian-market-mortared.mp4)
+
 - [Ukranian Family of Four Shelled](http://web.archive.org/web/20220307005817/https://www.nytimes.com/2022/03/06/world/europe/ukrainian-family-killed-war.html)
 
     ![Ukranian Family of Four Shelled](ukrainian-family-murdered-3.jpg)
+
+- Sumy Bombardment
+
+    - [Aljazeera](https://www.aljazeera.com/news/2022/3/5/foreign-students-trapped-sumy-ukraine-russia-war)
+
+    - [The Guardian](https://www.theguardian.com/world/2022/mar/08/sumy-international-students-in-ukrainian-city-tell-of-desperation)
+
+    - [Footage](sumy-bombardment.mp4) [UNVERIFIED SOURCE]
 
 ## News/Propaganda/Counter-Propaganda
 
