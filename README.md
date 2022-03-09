@@ -2,7 +2,7 @@
 
 A compilation of records and information
 
-Information labelled as unverfied should NOT be written off as invalid. This only means that the owner of this repository (z3c0) has not found/vetted the origin of the information. If you know any information that would enrich this repository (of which there is undoubtedly plenty), fork the repo and submit a merge request.
+Information labelled as unverfied should NOT be written off as invalid. This only means that the owner of this repository (z3c0) has not found/vetted the origin of the information. If you know any information that would enrich this repository (of which there is undoubtedly plenty), fork the repo and submit a merge request. This applies similarly to error corrections, revisions to developing events, or mistranslations.
 
 ## Table of Contents
 
