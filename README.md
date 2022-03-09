@@ -14,13 +14,17 @@ To use `hackernews.py`, set your HN credentials as environment variables (`HN_US
 
 Dependencies:
 
-- pandas
-- selenium
-- rich
-- pycryptodome
-- pyarrow
-- python-snappy
-- tabulate
+1) Python
+  - pandas
+  - selenium
+  - rich
+  - pycryptodome
+  - pyarrow
+  - python-snappy
+  - tabulate
+2) Other
+  - [geckodriver](https://github.com/mozilla/geckodriver/releases)
+    - See `install-geckodriver-linux.sh` for easy installation on Linux/WSL
 
 ## License
 
