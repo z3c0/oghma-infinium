@@ -75,12 +75,16 @@ def login(driver, wait, user, password):
     login_button.click()
 
 
-def validate_user(driver: Firefox, wait: WebDriverWait, user: str):
+def validate_login(driver: Firefox, wait: WebDriverWait, user: str):
     Log.write('validating login')
     user_anchor = xpath('//a[@id="me"]')
     wait.until(clickable(user_anchor))
     user_anchor = driver.find_element(*user_anchor)
     assert user == user_anchor.text
+
+
+def user_endpoint(user: str) -> str:
+    return f'https://news.ycombinator.com/user?id={user}'
 
 
 def new_hackernews_session(wait_timeout=120):
@@ -89,7 +93,7 @@ def new_hackernews_session(wait_timeout=120):
     wait = WebDriverWait(driver, wait_timeout)
 
     login(driver, wait, user, password)
-    validate_user(driver, wait, user)
+    validate_login(driver, wait, user)
     return driver, wait
 
 
@@ -298,8 +302,13 @@ def get_articles_by_keyword(keywords: Union[str, list[str]]):
     return pd.concat(all_posts).drop_duplicates()
 
 
+def markdown_link(text: str, link: str):
+    return f'[{text}]({link})'
+
+
 def create_russia_ukraine_report():
-    extract_data_from_hackernews(25, polite=False)
+    extract_data_from_hackernews(1)
+
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukranian']),
                          get_articles_by_keyword('belarus'),
@@ -317,9 +326,27 @@ def create_russia_ukraine_report():
     relevant_hn_posts = relevant_hn_posts.sort_values(by='score', ascending=False)
 
     relevant_hn_posts = relevant_hn_posts.reset_index()
-    relevant_hn_posts = relevant_hn_posts.drop(['index'], axis=1)
+
+    # format post vector
+    post_zip = zip(relevant_hn_posts['title'], relevant_hn_posts['link'])
+    post = [markdown_link(t, l) for t, l in post_zip]
+    relevant_hn_posts['post'] = post
+
+    # format user vector
+    user = relevant_hn_posts['user']
+    relevant_hn_posts['user'] = user.apply(lambda n: markdown_link(n, user_endpoint(n)))
+
+    # format comment vector
+    comments = relevant_hn_posts['comments'].apply(lambda n: markdown_link('comments', n))
+    relevant_hn_posts['comments'] = comments
+
+    # format matrix
+    relevant_hn_posts = relevant_hn_posts.drop(['index', 'title', 'link'], axis=1)
+    relevant_hn_posts = relevant_hn_posts[['post', 'user', 'comments', 'score']]
 
     relevant_hn_posts.to_markdown('global/hackernews-russia-ukraine.md')
+    relevant_hn_posts.to_json('global/hackernews-russia-ukraine.json', orient='records')
+    relevant_hn_posts.to_csv('global/hackernews-russia-ukraine.csv', index=False)
 
     Log.debug(relevant_hn_posts)
 
