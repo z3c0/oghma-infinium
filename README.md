@@ -20,6 +20,7 @@ Dependencies:
 - pycryptodome
 - pyarrow
 - python-snappy
+- tabulate
 
 ## License
 

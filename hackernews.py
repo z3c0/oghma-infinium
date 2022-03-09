@@ -299,7 +299,7 @@ def get_articles_by_keyword(keywords: Union[str, list[str]]):
 
 
 if __name__ == '__main__':
-    extract_data_from_hackernews(1, polite=False)
+    extract_data_from_hackernews(2, polite=False)
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukranian']),
                          get_articles_by_keyword('belarus'),
@@ -312,7 +312,12 @@ if __name__ == '__main__':
 
     grouping = ['title', 'link', 'comments', 'user']
     relevant_hn_posts = relevant_hn_posts.groupby(grouping).max('score')
-    relevant_hn_posts = relevant_hn_posts.reset_index()
+    relevant_hn_posts = pd.DataFrame(relevant_hn_posts.reset_index())
     relevant_hn_posts = relevant_hn_posts.sort_values(by='score', ascending=False)
+
+    relevant_hn_posts = relevant_hn_posts.reset_index()
+    relevant_hn_posts = relevant_hn_posts.drop(['index'], axis=1)
+
+    relevant_hn_posts.to_markdown('hackernews-russia-ukraine.md')
 
     Log.debug(relevant_hn_posts)
