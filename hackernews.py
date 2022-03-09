@@ -327,6 +327,12 @@ def create_russia_ukraine_report():
 
     relevant_hn_posts = relevant_hn_posts.reset_index()
 
+    relevant_hn_posts = relevant_hn_posts.drop(['index'], axis=1)
+
+    relevant_hn_posts.to_json('global/hackernews-russia-ukraine.json', orient='records')
+    relevant_hn_posts.to_csv('global/hackernews-russia-ukraine.csv', index=False)
+
+
     # format post vector
     post_zip = zip(relevant_hn_posts['title'], relevant_hn_posts['link'])
     post = [markdown_link(t, l) for t, l in post_zip]
@@ -341,12 +347,10 @@ def create_russia_ukraine_report():
     relevant_hn_posts['comments'] = comments
 
     # format matrix
-    relevant_hn_posts = relevant_hn_posts.drop(['index', 'title', 'link'], axis=1)
+    relevant_hn_posts = relevant_hn_posts.drop(['title', 'link'], axis=1)
     relevant_hn_posts = relevant_hn_posts[['post', 'user', 'comments', 'score']]
 
     relevant_hn_posts.to_markdown('global/hackernews-russia-ukraine.md')
-    relevant_hn_posts.to_json('global/hackernews-russia-ukraine.json', orient='records')
-    relevant_hn_posts.to_csv('global/hackernews-russia-ukraine.csv', index=False)
 
     Log.debug(relevant_hn_posts)
 
