@@ -306,8 +306,8 @@ def markdown_link(text: str, link: str):
     return f'[{text}]({link})'
 
 
-def create_russia_ukraine_report(pages=1):
-    extract_data_from_hackernews(pages)
+def create_russia_ukraine_report(pages=1, polite=True):
+    extract_data_from_hackernews(pages, polite)
 
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukrainian']),
