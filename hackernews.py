@@ -298,7 +298,7 @@ def get_articles_by_keyword(keywords: Union[str, list[str]]):
     return pd.concat(all_posts).drop_duplicates()
 
 
-if __name__ == '__main__':
+def create_russia_ukraine_report():
     extract_data_from_hackernews(25, polite=False)
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukranian']),
@@ -319,6 +319,10 @@ if __name__ == '__main__':
     relevant_hn_posts = relevant_hn_posts.reset_index()
     relevant_hn_posts = relevant_hn_posts.drop(['index'], axis=1)
 
-    relevant_hn_posts.to_markdown('hackernews-russia-ukraine.md')
+    relevant_hn_posts.to_markdown('global/hackernews-russia-ukraine.md')
 
     Log.debug(relevant_hn_posts)
+
+
+if __name__ == '__main__':
+    create_russia_ukraine_report()
