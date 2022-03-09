@@ -306,8 +306,8 @@ def markdown_link(text: str, link: str):
     return f'[{text}]({link})'
 
 
-def create_russia_ukraine_report():
-    extract_data_from_hackernews(1)
+def create_russia_ukraine_report(pages=1):
+    extract_data_from_hackernews(pages)
 
     relevant_hn_posts = [get_articles_by_keyword('russia'),
                          get_articles_by_keyword(['ukraine', 'ukranian']),
@@ -331,7 +331,6 @@ def create_russia_ukraine_report():
 
     relevant_hn_posts.to_json('global/hackernews-russia-ukraine.json', orient='records')
     relevant_hn_posts.to_csv('global/hackernews-russia-ukraine.csv', index=False)
-
 
     # format post vector
     post_zip = zip(relevant_hn_posts['title'], relevant_hn_posts['link'])
