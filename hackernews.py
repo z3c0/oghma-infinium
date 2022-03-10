@@ -313,7 +313,7 @@ def get_articles_by_keyword(keywords: Union[str, list[str]]):
     all_posts = list()
 
     for keyword in keywords:
-        keyword_pattern = r'(^|\s)' + keyword
+        keyword_pattern = r'(^|[\s\W])' + keyword
         matches = lower_title.apply(lambda n: re.search(keyword_pattern, n) is not None)
         keyword_posts = posts[matches]
         all_posts.append(keyword_posts)
