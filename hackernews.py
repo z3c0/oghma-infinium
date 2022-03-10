@@ -315,6 +315,7 @@ def create_russia_ukraine_report(pages=1, polite=True):
                          get_articles_by_keyword('baltic'),
                          get_articles_by_keyword(['china', 'chinese', 'beijing']),
                          get_articles_by_keyword('taiwan'),
+                         get_articles_by_keyword('nato'),
                          get_articles_by_keyword(['japan', 'tokyo'])]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
@@ -350,8 +351,6 @@ def create_russia_ukraine_report(pages=1, polite=True):
     relevant_hn_posts = relevant_hn_posts[['post', 'user', 'comments', 'score']]
 
     relevant_hn_posts.to_markdown('global/hackernews-russia-ukraine.md')
-
-    Log.debug(relevant_hn_posts)
 
 
 if __name__ == '__main__':
