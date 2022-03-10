@@ -19,6 +19,17 @@ HACKERNEWS_LOGIN = f'{HACKERNEWS_ROOT}/login'
 CRAWL_DELAY = 30
 
 
+class Keywords:
+    RUSSIA = ['russia', 'putin', 'moscow', 'lavrov']
+    UKRAINE = ['ukraine', 'ukrainian', 'kyiv', 'zelensky']
+    BELARUS = 'belarus'
+    BALTIC_STATES = 'baltic'
+    CHINA = ['china', 'chinese', 'beijing']
+    TAIWAN = 'taiwan'
+    NATO = 'nato'
+    JAPAN = ['japan', 'tokyo']
+
+
 class Log:
     console = console.Console()
     console.clear()
@@ -317,14 +328,14 @@ def markdown_link(text: str, link: str):
 def create_russia_ukraine_report(pages=1, polite=True):
     extract_data_from_hackernews(pages, polite)
 
-    relevant_hn_posts = [get_articles_by_keyword(['russia', 'putin', 'moscow', 'lavrov']),
-                         get_articles_by_keyword(['ukraine', 'ukrainian', 'kyiv', 'zelensky']),
-                         get_articles_by_keyword('belarus'),
-                         get_articles_by_keyword('baltic'),
-                         get_articles_by_keyword(['china', 'chinese', 'beijing']),
-                         get_articles_by_keyword('taiwan'),
-                         get_articles_by_keyword('nato'),
-                         get_articles_by_keyword(['japan', 'tokyo'])]
+    relevant_hn_posts = [get_articles_by_keyword(Keywords.RUSSIA),
+                         get_articles_by_keyword(Keywords.UKRAINE),
+                         get_articles_by_keyword(Keywords.BELARUS),
+                         get_articles_by_keyword(Keywords.BALTIC_STATES),
+                         get_articles_by_keyword(Keywords.CHINA),
+                         get_articles_by_keyword(Keywords.NATO),
+                         get_articles_by_keyword(Keywords.JAPAN),
+                         get_articles_by_keyword(Keywords.TAIWAN)]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
     relevant_hn_posts = relevant_hn_posts[['id', 'title', 'link', 'comments', 'user', 'score']]
