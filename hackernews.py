@@ -39,9 +39,11 @@ class Log:
         Log.console.print(*objects)
 
     @staticmethod
-    def write(*text, warning=False):
+    def write(*text, warning=False, error=False):
         if warning:
             kwargs = dict(style='black on yellow')
+        elif error:
+            kwargs = dict(style='red')
         else:
             kwargs = dict()
 
@@ -210,7 +212,11 @@ def extract_data_from_hackernews(pages=5, polite=True, crawl_range=(10, 10)):
             Log.write(f'sleeping {crawl_delay} seconds')
 
             time.sleep(crawl_delay)
-            go_to_next_page(driver, wait)
+            try:
+                go_to_next_page(driver, wait)
+            except TimeoutError:
+                Log.write('timed out waiting for next page', error=True)
+                break
             page += 1
             continue
 
