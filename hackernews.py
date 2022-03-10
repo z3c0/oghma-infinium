@@ -331,7 +331,7 @@ def create_russia_ukraine_report(pages=1, polite=True):
     relevant_hn_posts = relevant_hn_posts.drop(['index'], axis=1)
 
     # exclude false-positives
-    exclude = {}
+    exclude = pd.read_csv('hn_exclude', header=None)[0]
     relevant_hn_posts = relevant_hn_posts[~relevant_hn_posts['id'].isin(exclude)]
 
     # format id vector
