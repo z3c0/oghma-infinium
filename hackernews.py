@@ -334,11 +334,12 @@ def create_russia_ukraine_report(pages=1, polite=True):
     exclude = {}
     relevant_hn_posts = relevant_hn_posts[~relevant_hn_posts['id'].isin(exclude)]
 
+    # format id vector
+    relevant_hn_posts['id'] = relevant_hn_posts['id'].apply(int).apply(str)
+
+    # write to data formats before formatting for markdown
     relevant_hn_posts.to_json('global/hackernews-russia-ukraine.json', orient='records')
     relevant_hn_posts.to_csv('global/hackernews-russia-ukraine.csv', index=False)
-
-    # format id vector
-    relevant_hn_posts['id'] = relevant_hn_posts['id'].apply(str)
 
     # format post vector
     post_zip = zip(relevant_hn_posts['title'], relevant_hn_posts['link'])
