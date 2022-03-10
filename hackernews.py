@@ -381,4 +381,4 @@ def create_russia_ukraine_report(pages=1, polite=True):
 
 
 if __name__ == '__main__':
-    create_russia_ukraine_report()
+    create_russia_ukraine_report(25, False)
