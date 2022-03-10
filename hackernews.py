@@ -27,8 +27,13 @@ class Log:
         Log.console.print(*objects)
 
     @staticmethod
-    def write(*text):
-        Log.console.log(*text)
+    def write(*text, warning=False):
+        if warning:
+            kwargs = dict(style='black on yellow')
+        else:
+            kwargs = dict()
+
+        Log.console.log(*text, **kwargs)
 
     @staticmethod
     def error():
@@ -174,8 +179,8 @@ def extract_data_from_hackernews(pages=5, polite=True, crawl_range=(10, 10)):
     if polite:
         Log.write(f'polite scraping enabled. crawl delay set to {CRAWL_DELAY} seconds')
     else:
-        Log.write('[yellow]!!WARNING!! polite scraping is disabled')
-        Log.write('[yellow]crawling too quickly will result in an IP ban')
+        Log.write('!!WARNING!! polite scraping is disabled', warning=True)
+        Log.write('crawling too quickly will result in an IP ban', warning=True)
 
     driver, wait = new_hackernews_session()
 
@@ -309,8 +314,8 @@ def markdown_link(text: str, link: str):
 def create_russia_ukraine_report(pages=1, polite=True):
     extract_data_from_hackernews(pages, polite)
 
-    relevant_hn_posts = [get_articles_by_keyword(['russia', 'putin']),
-                         get_articles_by_keyword(['ukraine', 'ukrainian', 'kyiv', 'sumy', 'zelensky']),
+    relevant_hn_posts = [get_articles_by_keyword(['russia', 'putin', 'moscow']),
+                         get_articles_by_keyword(['ukraine', 'ukrainian', 'kyiv', 'zelensky']),
                          get_articles_by_keyword('belarus'),
                          get_articles_by_keyword('baltic'),
                          get_articles_by_keyword(['china', 'chinese', 'beijing']),
