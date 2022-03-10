@@ -309,13 +309,13 @@ def markdown_link(text: str, link: str):
 def create_russia_ukraine_report(pages=1, polite=True):
     extract_data_from_hackernews(pages, polite)
 
-    relevant_hn_posts = [get_articles_by_keyword('russia'),
-                         get_articles_by_keyword(['ukraine', 'ukrainian']),
+    relevant_hn_posts = [get_articles_by_keyword(['russia', 'putin']),
+                         get_articles_by_keyword(['ukraine', 'ukrainian', 'kyiv', 'sumy', 'zelensky']),
                          get_articles_by_keyword('belarus'),
                          get_articles_by_keyword('baltic'),
-                         get_articles_by_keyword(['china', 'chinese']),
+                         get_articles_by_keyword(['china', 'chinese', 'beijing']),
                          get_articles_by_keyword('taiwan'),
-                         get_articles_by_keyword('japan')]
+                         get_articles_by_keyword(['japan', 'tokyo'])]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
     relevant_hn_posts = relevant_hn_posts[['title', 'link', 'comments', 'user', 'score']]
