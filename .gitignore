@@ -3,3 +3,5 @@
 *.parquet
 
 *.log
+
+*.tar.gz
