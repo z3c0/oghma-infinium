@@ -23,7 +23,7 @@ class Keywords:
     RUSSIA = ['russia', 'putin', 'moscow', 'lavrov']
     UKRAINE = ['ukraine', 'ukrainian', 'kyiv', 'zelensky']
     BELARUS = 'belarus'
-    BALTIC_STATES = 'baltic'
+    BALTIC_STATES = ['baltic', 'estonia', 'latvia', 'lithuania']
     CHINA = ['china', 'chinese', 'beijing']
     TAIWAN = 'taiwan'
     NATO = 'nato'
