@@ -21,7 +21,7 @@ CRAWL_DELAY = 30
 
 class Keywords:
     RUSSIA = ['russia', 'putin', 'moscow', 'lavrov']
-    UKRAINE = ['ukraine', 'ukrainian', 'kyiv', 'zelensky']
+    UKRAINE = ['ukraine', 'ukrainian', 'kyiv', 'zelensky', 'kuleba']
     BELARUS = 'belarus'
     BALTIC_STATES = ['baltic', 'estonia', 'latvia', 'lithuania']
     CHINA = ['china', 'chinese', 'beijing']
@@ -381,4 +381,4 @@ def create_russia_ukraine_report(pages=1, polite=True):
 
 
 if __name__ == '__main__':
-    create_russia_ukraine_report(25, False)
+    create_russia_ukraine_report()
