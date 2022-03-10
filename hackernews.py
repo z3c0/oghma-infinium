@@ -337,6 +337,9 @@ def create_russia_ukraine_report(pages=1, polite=True):
     relevant_hn_posts.to_json('global/hackernews-russia-ukraine.json', orient='records')
     relevant_hn_posts.to_csv('global/hackernews-russia-ukraine.csv', index=False)
 
+    # format id vector
+    relevant_hn_posts['id'] = relevant_hn_posts['id'].apply(str)
+
     # format post vector
     post_zip = zip(relevant_hn_posts['title'], relevant_hn_posts['link'])
     post = [markdown_link(t, l) for t, l in post_zip]
