@@ -344,7 +344,8 @@ def create_russia_ukraine_report(pages=1, polite=True):
                          get_articles_by_keyword(Keywords.TAIWAN)]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
-    relevant_hn_posts = relevant_hn_posts[['id', 'title', 'link', 'comments', 'user', 'score']]
+    selection = ['id', 'title', 'link', 'comments', 'user', 'score']
+    relevant_hn_posts = relevant_hn_posts[selection]
 
     grouping = ['id', 'title', 'link', 'comments', 'user']
     relevant_hn_posts = relevant_hn_posts.groupby(grouping).max('score')
@@ -352,7 +353,6 @@ def create_russia_ukraine_report(pages=1, polite=True):
     relevant_hn_posts = relevant_hn_posts.sort_values(by='score', ascending=False)
 
     relevant_hn_posts = relevant_hn_posts.reset_index()
-
     relevant_hn_posts = relevant_hn_posts.drop(['index'], axis=1)
 
     # exclude false-positives
@@ -368,8 +368,7 @@ def create_russia_ukraine_report(pages=1, polite=True):
 
     # format post vector
     post_zip = zip(relevant_hn_posts['title'], relevant_hn_posts['link'])
-    post = [markdown_link(t, l) for t, l in post_zip]
-    relevant_hn_posts['post'] = post
+    relevant_hn_posts['post'] = [markdown_link(t, l) for t, l in post_zip]
 
     # format user vector
     user = relevant_hn_posts['user']
