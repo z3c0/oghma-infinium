@@ -28,6 +28,8 @@ class Keywords:
     TAIWAN = 'taiwan'
     NATO = 'nato'
     JAPAN = ['japan', 'tokyo']
+    IRAQ = ['iraq', 'erbil']
+    IRAN = ['iran', 'khasabad']
 
 
 class Log:
@@ -341,7 +343,9 @@ def create_russia_ukraine_report(pages=1, polite=True):
                          get_articles_by_keyword(Keywords.CHINA),
                          get_articles_by_keyword(Keywords.NATO),
                          get_articles_by_keyword(Keywords.JAPAN),
-                         get_articles_by_keyword(Keywords.TAIWAN)]
+                         get_articles_by_keyword(Keywords.TAIWAN),
+                         get_articles_by_keyword(Keywords.IRAQ),
+                         get_articles_by_keyword(Keywords.IRAN)]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
     selection = ['id', 'title', 'link', 'comments', 'user', 'score']
