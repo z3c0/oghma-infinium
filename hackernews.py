@@ -20,7 +20,7 @@ CRAWL_DELAY = 30
 
 
 class Keywords:
-    RUSSIA = ['russia', 'putin', 'moscow', 'lavrov']
+    RUSSIA = ['russia', 'putin', 'moscow', 'lavrov', 'oligarch']
     UKRAINE = ['ukraine', 'ukrainian', 'kyiv', 'zelensky', 'kuleba']
     BELARUS = 'belarus'
     BALTIC_STATES = ['baltic', 'estonia', 'latvia', 'lithuania']
