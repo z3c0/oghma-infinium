@@ -348,10 +348,10 @@ def create_russia_ukraine_report(pages=1, polite=True):
                          get_articles_by_keyword(Keywords.IRAN)]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
-    selection = ['id', 'title', 'link', 'comments', 'user', 'score']
+    selection = ['id', 'title', 'link', 'comments', 'user', 'score', 'timestamp']
     relevant_hn_posts = relevant_hn_posts[selection]
 
-    grouping = ['id', 'title', 'link', 'comments', 'user']
+    grouping = ['id', 'title', 'link', 'comments', 'user', 'timestamp']
     relevant_hn_posts = relevant_hn_posts.groupby(grouping).max('score')
     relevant_hn_posts = pd.DataFrame(relevant_hn_posts.reset_index())
     relevant_hn_posts = relevant_hn_posts.sort_values(by='score', ascending=False)
@@ -384,7 +384,7 @@ def create_russia_ukraine_report(pages=1, polite=True):
 
     # format matrix
     relevant_hn_posts = relevant_hn_posts.drop(['title', 'link'], axis=1)
-    relevant_hn_posts = relevant_hn_posts[['id', 'post', 'user', 'comments', 'score']]
+    relevant_hn_posts = relevant_hn_posts[['id', 'post', 'user', 'comments', 'score', 'timestamp']]
 
     relevant_hn_posts.to_markdown('global/hackernews-russia-ukraine.md')
 
