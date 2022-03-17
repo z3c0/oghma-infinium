@@ -170,7 +170,7 @@ def go_to_next_page(driver: Firefox, wait: WebDriverWait):
     more_anchor.click()
 
 
-def extract_data_from_hackernews(pages=5, polite=True, crawl_range=(10, 10)):
+def extract_data_from_hackernews(pages=5, polite=True, crawl_range=(10, 10)) -> pd.DataFrame:
     # "polite" will cause the bot to adhere strictly to
     # HN's crawl delay of 30 seconds.
     # Turn this setting off to speed up extraction.
@@ -229,9 +229,10 @@ def extract_data_from_hackernews(pages=5, polite=True, crawl_range=(10, 10)):
     posts = pd.DataFrame(all_posts)
     posts = pd.concat([existing_posts, posts]).drop_duplicates()
     posts.to_parquet('hackernews_posts.snappy.parquet')
+    return posts
 
 
-def extract_users_from_posts(polite=True, crawl_range=(10, 10)):
+def extract_users_from_posts(polite=True, crawl_range=(10, 10)) -> pd.DataFrame:
     posts = pd.read_parquet('hackernews_posts.snappy.parquet')
     posts = posts.set_index('id')
 
@@ -268,9 +269,11 @@ def extract_users_from_posts(polite=True, crawl_range=(10, 10)):
 
     driver.quit()
 
+    return users
 
-def extract_user_profiles(sample_size: int = None, polite=True, crawl_range=(10, 10)):
-    users = pd.read_parquet('hackernews_user_profiles.snappy.parquet')
+
+def extract_user_profiles(sample_size: int = None, polite=True, crawl_range=(10, 10), users=None):
+    users = pd.read_parquet('hackernews_user_profiles.snappy.parquet') if users is None else users
     existing_profiles = pd.read_parquet('hackernews_users.snappy.parquet')
 
     if sample_size is None:
@@ -310,10 +313,14 @@ def extract_user_profiles(sample_size: int = None, polite=True, crawl_range=(10,
 
     driver.quit()
 
+    return profiles
 
-def get_articles_by_keyword(keywords: Union[str, list[str]]):
-    posts = pd.read_parquet('hackernews_posts.snappy.parquet')
+
+def get_articles_by_keyword(keywords: Union[str, list[str]], posts=None):
     lower_title = posts['title'].str.lower()
+
+    if posts is None:
+        posts = pd.read_parquet('hackernews_posts.snappy.parquet')
 
     if isinstance(keywords, str):
         keywords = [keywords]
@@ -334,18 +341,17 @@ def markdown_link(text: str, link: str):
 
 
 def create_russia_ukraine_report(pages=1, polite=True):
-    extract_data_from_hackernews(pages, polite)
-
-    relevant_hn_posts = [get_articles_by_keyword(Keywords.RUSSIA),
-                         get_articles_by_keyword(Keywords.UKRAINE),
-                         get_articles_by_keyword(Keywords.BELARUS),
-                         get_articles_by_keyword(Keywords.BALTIC_STATES),
-                         get_articles_by_keyword(Keywords.CHINA),
-                         get_articles_by_keyword(Keywords.NATO),
-                         get_articles_by_keyword(Keywords.JAPAN),
-                         get_articles_by_keyword(Keywords.TAIWAN),
-                         get_articles_by_keyword(Keywords.IRAQ),
-                         get_articles_by_keyword(Keywords.IRAN)]
+    posts = extract_data_from_hackernews(pages, polite)
+    relevant_hn_posts = [get_articles_by_keyword(Keywords.RUSSIA, posts),
+                         get_articles_by_keyword(Keywords.UKRAINE, posts),
+                         get_articles_by_keyword(Keywords.BELARUS, posts),
+                         get_articles_by_keyword(Keywords.BALTIC_STATES, posts),
+                         get_articles_by_keyword(Keywords.CHINA, posts),
+                         get_articles_by_keyword(Keywords.NATO, posts),
+                         get_articles_by_keyword(Keywords.JAPAN, posts),
+                         get_articles_by_keyword(Keywords.TAIWAN, posts),
+                         get_articles_by_keyword(Keywords.IRAQ, posts),
+                         get_articles_by_keyword(Keywords.IRAN, posts)]
 
     relevant_hn_posts = pd.concat(relevant_hn_posts)
     selection = ['id', 'title', 'link', 'comments', 'user', 'score', 'timestamp']
